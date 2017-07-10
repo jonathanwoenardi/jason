@@ -15,6 +15,18 @@ function affine2(m11, m12, m21, m22, b1, b2) {
 
 // Coordinate Transformation
 
+function cTranslateX(coord, b) {
+  if(coord && coord.constructor === Array) {
+    coord[0] += b;
+  }
+}
+
+function cTranslateY(coord, b) {
+  if(coord && coord.constructor === Array) {
+    coord[1] += b;
+  }
+}
+
 function cTranslateZ(coord, b) {
   if(coord && coord.constructor === Array && coord.length === 3) {
     coord[2] += b;
@@ -69,17 +81,28 @@ function scTransform(scenarioJSON, a) {
 }
 
 // Action Wrapper
+function translateX(data, args) {
+  b = parseInt(args[0]);
+  scTransform(data, function(s){return cTranslateX(s, b);});
+}
+
+function translateY(data, args) {
+  b = parseInt(args[0]);
+  scTransform(data, function(s){return cTranslateY(s, b);});
+}
 
 function translateZ(data, args) {
   b = parseInt(args[0]);
-  scTransform(data, function(x){return cTranslateZ(x, b);});
+  scTransform(data, function(s){return cTranslateZ(s, b);});
 }
 
 // Main
 
 function transform(data, action, args) {
-  if(action === "translateZ") {
-    translateZ(data, args);
+  switch (action) {
+    case "translateX": translateX(data, args); break;
+    case "translateY": translateY(data, args); break;
+    case "translateZ": translateZ(data, args); break;
   }
 }
 
