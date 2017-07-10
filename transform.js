@@ -1,3 +1,8 @@
+// Current assumption:
+// Coordinates is 2D or 3D
+// ScenarioJSON follow qua-kit standard
+// https://github.com/achirkin/qua-kit
+
 // Primitives
 
 function affine1(m, b) {
