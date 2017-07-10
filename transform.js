@@ -1,3 +1,5 @@
+// Primitives
+
 function affine1(m, b) {
   return function(x){return m*x+b;};
 }
@@ -6,15 +8,15 @@ function affine2(m11, m12, m21, m22, b1, b2) {
   return function(x, y){return [m11*x+m12*y+b1, m21*x+m22*y+b2];};
 }
 
-function f(x) {
-  return x + 4;
+// Coordinate Transformation
+
+function cTranslateZ(coord, b) {
+  if(coord && coord.constructor === Array && coord.length === 3) {
+    coord[2] += b;
+  }
 }
 
-function test(coord) {
-  coord[0] += 1;
-  coord[1] += 2;
-  return coord;
-}
+// Checker
 
 function objTransform(obj, a) {
   if(obj.constructor === Array) {
@@ -61,16 +63,14 @@ function scTransform(scenarioJSON, a) {
   }
 }
 
-function cTranslateZ(coord, b) {
-  if(coord && coord.constructor === Array && coord.length === 3) {
-    coord[2] += b;
-  }
-}
+// Action Wrapper
 
 function translateZ(data, args) {
   b = parseInt(args[0]);
   scTransform(data, function(x){return cTranslateZ(x, b);});
 }
+
+// Main
 
 function transform(data, action, args) {
   if(action === "translateZ") {
@@ -78,7 +78,6 @@ function transform(data, action, args) {
   }
 }
 
-// test
 var input = process.argv[2];
 var output = process.argv[3];
 var action = process.argv[4];
