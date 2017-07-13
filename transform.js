@@ -100,25 +100,25 @@ function scTransform(scenarioJSON, affine, normal) {
 
 // Action Wrapper
 function translateX(data, args) {
-  b = parseInt(args[0]);
+  b = parseFloat(args[0]);
   scTransform(data, function(s){return cTranslateX(s, b);}, false);
 }
 
 function translateY(data, args) {
-  b = parseInt(args[0]);
+  b = parseFloat(args[0]);
   scTransform(data, function(s){return cTranslateY(s, b);}, false);
 }
 
 function translateZ(data, args) {
-  b = parseInt(args[0]);
+  b = parseFloat(args[0]);
   scTransform(data, function(s){return cTranslateZ(s, b);}, false);
 }
 
 function scale(data, args, normal) {
-  mx = parseInt(args[0]);
-  my = parseInt(args[1]);
+  mx = parseFloat(args[0]);
+  my = parseFloat(args[1]);
   if(args[2]) {
-    mz = parseInt(args[2]);
+    mz = parseFloat(args[2]);
     var threeDimension = true;
   }
   if(threeDimension) {
@@ -129,7 +129,7 @@ function scale(data, args, normal) {
 }
 
 function translateZ(data, args) {
-  b = parseInt(args[0]);
+  b = parseFloat(args[0]);
   scTransform(data, function(s){return cTranslateZ(s, b);}, false);
 }
 // Helper functions
