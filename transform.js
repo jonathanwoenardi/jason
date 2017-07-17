@@ -123,7 +123,6 @@ function cRotateRelativeXYZ(coord, a, rx, ry, rz) {
   cTranslateXYZ(coord, rx, ry, -rz);
 }
 
-function 
 // Checker
 
 function objTransform(obj, affine) {
