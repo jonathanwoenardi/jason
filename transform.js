@@ -169,6 +169,7 @@ function transform(data, action, args) {
     case "translateZ": translateZ(data, args); break;
     case "scaleOrigin": scale(data, args, false); break;
     case "scaleRelative": scale(data, args, true); break;
+    case "beautify": data; break;
   }
 }
 
