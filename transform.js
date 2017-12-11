@@ -265,10 +265,26 @@ var obj;
 fs.readFile(input, 'utf8', function(err, data) {
   if (err) throw err;
   obj = JSON.parse(data);
-  transform(obj, action, args);
-  fs.writeFile(output, JSON.stringify(obj, null, 2), function(err) {
-    if(err) {
-      return console.log(err);
-    }
-  });
+  if(action == "uglify") {
+    fs.writeFile(output, JSON.stringify(obj, null, null), function(err) {
+      if(err) {
+        return console.log(err);
+      }
+    });
+  } else
+  if(action == "round")  {
+    f = function(key, val) { return val.toFixed ? Number(val.toFixed(args[0])) : val;};
+    fs.writeFile(output, JSON.stringify(obj, f, 2), function(err) {
+      if(err) {
+        return console.log(err);
+      }
+    });
+  } else {
+    transform(obj, action, args);
+    fs.writeFile(output, JSON.stringify(obj, null, 2), function(err) {
+      if(err) {
+        return console.log(err);
+      }
+    });
+  }
 });
