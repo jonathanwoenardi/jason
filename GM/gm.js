@@ -102,14 +102,14 @@ function gm$createWGS84toUTMTransform(lon0, lat0) {
       , w8 = w4*w4;
     xs[0] = k * v * w * cosy * ( 1
             + w2 / 6 * cosy * cosy * (psi - t*t)
-            + w4 / 120 * Math.pow(cosy, 4) * ( 4*psi*psi*psi + ( 1 - 6*t*t ) + psi*psi*(1+8*t*t) - psi*2*t*t + Math.pow(t,4) )
+            + w4 / 120 * Math.pow(cosy, 4) * ( 4*psi*psi*psi * ( 1 - 6*t*t ) + psi*psi*(1+8*t*t) - psi*2*t*t + Math.pow(t,4) )
             + w6 / 5040 * Math.pow(cosy,6) * ( 61 - 479*t*t + 179 * Math.pow(t,4) - Math.pow(t,6) )
             )
     xs[1] = k * ( fm(yr) - m0
             + w2 * 0.5 * v * siny * cosy
             + w4/24 * v * siny * cosy*cosy*cosy * ( 4*psi*psi + psi - t*t)
             + w6/720* v * siny * Math.pow(cosy, 5) * ( 8 * Math.pow(psi, 4) * (11 - 24*t*t) - 28*Math.pow(psi, 3)*(1-6*t*t) + psi*psi*(1 - 32*t*t) - psi*2*t*t + Math.pow(t,4) )
-            + w8/40320*v* siny * Math.pow(cosy, 7) * (1285 - 3111 * t*t + 543 * Math.pow(t,4) - Math.pow(t,6) )
+            + w8/40320*v* siny * Math.pow(cosy, 7) * (1385 - 3111 * t*t + 543 * Math.pow(t,4) - Math.pow(t,6) )
             )
   };
 }
